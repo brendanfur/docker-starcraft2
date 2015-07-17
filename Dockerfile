@@ -7,7 +7,6 @@ RUN apt-get update &&\
     add-apt-repository ppa:ubuntu-wine/ppa
 RUN apt-get update && apt-get install -y wine1.7
 
-# i am the swarm~
 RUN adduser kerrigan
 USER kerrigan
 
