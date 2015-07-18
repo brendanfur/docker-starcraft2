@@ -10,6 +10,4 @@ RUN apt-get update && apt-get install -y wine1.7
 RUN adduser kerrigan
 USER kerrigan
 
-RUN regsvr32 ole32
-
 CMD wine notepad
