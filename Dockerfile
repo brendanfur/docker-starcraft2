@@ -5,14 +5,16 @@ RUN dpkg --add-architecture i386
 RUN apt-get update && \
     apt-get install -y \
     	software-properties-common \
+    	supervisor \
     	wget && \
     add-apt-repository ppa:ubuntu-wine/ppa && \
 	apt-get update && \
 	apt-get install -y wine1.7
 
-RUN adduser kerrigan
-USER kerrigan
-WORKDIR /home/kerrigan/
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-CMD wget http://dist.blizzard.com/downloads/sc2-installers/full/StarCraft-II-Setup-enGB.exe && \
-	wine ./StarCraft-II-Setup-enGB.exe
+RUN adduser kerrigan
+
+RUN chown kerrigan /var/log/supervisor/
+
+CMD ["/usr/bin/supervisord"]
