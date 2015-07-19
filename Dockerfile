@@ -11,10 +11,7 @@ RUN apt-get update && \
 	apt-get update && \
 	apt-get install -y wine1.7
 
+RUN mkdir /starcraft/
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
-RUN adduser kerrigan
-
-RUN chown kerrigan /var/log/supervisor/
 
 CMD ["/usr/bin/supervisord"]
